@@ -1,5 +1,0 @@
-La forme du rendu correspond aux attendus du TP5: dépôt github, compilation automatique sur travis, quelques tests unitaires et de la documentation.
-
-Les codes sources déposés correspondent à ceux du TP4: chargement du labyrinthe via les fichiers *.txt.
-
-Pour tester les codes selon les consignes du TP3: dans le main.cpp, décommenter les lignes 259 et 260, puis commenter les lignes 262 et 263.
