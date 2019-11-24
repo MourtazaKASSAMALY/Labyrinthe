@@ -136,7 +136,7 @@ void save_cells(Cell *cell, ofstream *f)
 		if(!cell->m_neighb[j]->m_saved) //flag
 		{
 			*f << endl;
-			save_cell(cell->m_neighb[j], f); //récursivité
+			save_cells(cell->m_neighb[j], f); //récursivité
 		}
 	}
 	
