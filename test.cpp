@@ -13,7 +13,7 @@ TEST_CASE("Ajout de cellules et de voisins")
     Cell *neighb = new Cell(1, 0);
     c->add_neighb(neighb);
     CHECK(c->m_neighb[0] == neighb);
-    CHECK(neighb->m_neighb[0] == c);
+    CHECK(neighb->m_neighb[0] == c); 
 
     delete c;
     delete neighb;
