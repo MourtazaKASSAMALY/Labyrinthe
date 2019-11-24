@@ -3,13 +3,46 @@
 
 #include <iostream>
 
+/**
+* \class 	Cell
+* \author 	Mourtaza KASSAMALY
+* \brief 	Classe implémentant l'objet cellule
+* \date 	24 nov 2019
+*/
 class Cell
 {
 	public:
+		/**
+ 		* \brief	Initialise une cellule via ses coordonnées
+ 		* \param	x	Abscisse
+ 		* \param	y	Ordonnée
+ 		*/
 		Cell(int x, int y);
+
+		/**
+ 		* \brief	Permet d'ajouter un voisin à la cellule courante
+ 		* \details	Par double appel de la méthode set_neighb pour ajouter les voisins symétriquement
+ 		* \param	*c	Pointeur vers la cellule voisine
+ 		* \return	Ne retourne rien
+ 		*/
 		void add_neighb(Cell *c);
+
+		/**
+ 		* \brief	Permet d'ajouter deux voisins d'un seul coup
+ 		* \details	Par double appel de la méthode add_neighb(Cell *c)
+ 		* \param	*c1	Pointeur vers la première cellule voisine
+ 		* \param	*c2	Pointeur vers la seconde cellule voisine
+ 		* \return	Ne retourne rien
+ 		*/
 		void add_neighb(Cell *c1, Cell *c2);
+
+		/**
+ 		* \brief	Ajoute une cellule voisine au tableau de pointeurs des voisins
+ 		* \param	*c	Pointeur vers la cellule voisine
+ 		* \return	Ne retourne rien
+ 		*/
 		void set_neighb(Cell *c);
+
 		~Cell();
 
 	public:

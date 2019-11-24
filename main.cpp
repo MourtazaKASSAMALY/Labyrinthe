@@ -5,6 +5,12 @@
 #include <fstream>
 using namespace std;
  
+/**
+* \brief 	Affichage d'un mur entre deux cellules non voisines
+* \param 	*n1	La première cellule
+* \param  	*n2 La seconde cellule
+* \return 	Ne retourne rien
+*/
 void draw_gate(const Cell *n1, const Cell *n2)
 {
 	vibes::drawBox(
@@ -13,6 +19,11 @@ void draw_gate(const Cell *n1, const Cell *n2)
 		"lightGray[lightGray]");
 }
 
+/**
+* \brief 	Affichage récursif d'une cellule et de toutes ses voisines
+* \param 	*cell	La cellule à afficher
+* \return 	Ne retourne rien
+*/
 void display_cell(Cell *cell)
 {
 	vibes::drawBox(cell->m_x, cell->m_x + 1, cell->m_y, cell->m_y + 1, "[lightGray]");
@@ -27,6 +38,13 @@ void display_cell(Cell *cell)
 	}
 }
 
+/**
+* \brief 	Affiche un labyrinthe par affichage récursif de ses cellules
+* \details	La fonction met également en évidence les cellules de départ et d'arrivée pour un meilleur visuel
+* \param 	*n1	La première cellule
+* \param  	maze 	Le labyrinthe à afficher 
+* \return 	Ne retourne rien
+*/
 void display(Maze maze)
 {
 	//Affichage de tout le labyrinthe par récursivité sur la cellule de départ
@@ -49,6 +67,10 @@ void display(Maze maze)
 		"Red[Red]");
 }
 
+/**
+* \brief 	Crée un labyrinthe en initialisant toutes les cellules et leurs voisines
+* \return 	maze 	Le labyrinthe créé
+*/
 Maze create_maze()
 {
 	//Création des cellules
@@ -92,8 +114,15 @@ Maze create_maze()
 	return maze;
 }
 
-/*Détermine un chemin pour atteindre la cellule d'arrivée depuis la cellule *c passée en paramètre
-Elle permet, par récursivité, de reconstituer un chemin de la cellule de départ à celle d'arrivée*/
+/**
+* \brief 	Détermine un chemin pour atteindre la cellule d'arrivée depuis la cellule courante
+* \details  Elle permet, par récursivité, de reconstituer un chemin de la cellule de départ à celle d'arrivée
+* \param 	*c	Cellule courante
+* \param  	*cf La cellule d'arrivée
+* \param 	*path 	Chemin qui mène à la cellule courante depuis la cellule de départ
+* \param 	&over 	flag qui permet de notifier si le chemin a été trouvé ou non et permet d'arrêter la récursion 
+* \return 	Ne retourne rien
+*/
 bool find_path(Cell *c, Cell *cf, Path *path, bool &over)
 {	
 	c->m_treated = true; //flag
@@ -121,6 +150,12 @@ bool find_path(Cell *c, Cell *cf, Path *path, bool &over)
 	}
 }
 
+/**
+* \brief 	Sauvegarde une cellule et toutes ses voisines dans un fichier texte
+* \param 	*cell 	La cellule à sauvegarder
+* \param  	*f 	Le flux d'écriture dans le fichier	
+* \return 	Ne retourne rien
+*/
 void save_cells(Cell *cell, ofstream *f)
 {
 	*f << *cell << " " << cell->m_nb_neighb;
@@ -142,6 +177,13 @@ void save_cells(Cell *cell, ofstream *f)
 	
 }
 
+/**
+* \brief 	Sauvegarde du labyrinthe par sauvegarde récursif de toutes ses cellules
+* \details	La fonction met également en évidence les cellules de départ et d'arrivée
+* \param 	&maze	Le labyrinthe à sauvegarder
+* \param  	&file_name 	Nom du fichier dans lequel effectuer la sauvegarde 
+* \return 	Ne retourne rien
+*/
 void save_maze(const Maze& maze, const string& file_name)
 {
 	ofstream f(file_name);
@@ -159,7 +201,11 @@ void save_maze(const Maze& maze, const string& file_name)
 	f.close();
 }
 
-//Permet de convertir une chaine de caractère de type (int, int) en un objet de type pair<int, int> (4, 2)
+/**
+* \brief 	Permet de convertir une chaine de caractère de type (int, int) en un objet de type pair<int, int>
+* \param 	coords	La chaîne de caractère à convertir
+* \return 	pair<int, int>	L'objet converti
+*/
 pair<int,int> convert_coords(string coords)
 {
 	coords = coords.substr(1, coords.size()-2);
@@ -168,6 +214,12 @@ pair<int,int> convert_coords(string coords)
 	return pair<int,int> (x, y);
 }
 
+/**
+* \brief 	Chargement d'un labyrinthe par lecture d'un fichier texte
+* \details	Le fichier texte doit respecter une structure particulière, conformément à la fonction save_maze
+* \param  	file_name 	Nom du fichier dà partir duquel charger le labyrinthe
+* \return 	maze Le labyrinthe créé
+*/
 Maze read_maze(const string& file_name)
 {
 	ifstream f(file_name);
@@ -247,6 +299,10 @@ Maze read_maze(const string& file_name)
 
 // ------------------------------------------------------------------------------------------- //
 
+/**
+* \brief 	Programme principal
+* \details	Le programme initialise un labyrinthe, l'affichage et le résout pour trouver un chemin et l'afficher également
+*/
 int main()
 {
 	vibes::beginDrawing(); // initialisation de VIBes
