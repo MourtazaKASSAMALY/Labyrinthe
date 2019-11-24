@@ -18,14 +18,14 @@ class Cell
 		int m_nb_neighb = 0;
 		Cell **m_neighb = NULL; //tableau de pointeurs vers les voisins
 		Cell **m_backup = NULL; //tableau de pointeurs vers les voisins
-		bool m_displayed = false;
-		bool m_treated = false; //utile pour le parcours du labyrinthe
-		bool m_saved = false;
-		bool m_corrupted = false;
+		bool m_displayed = false; //flag utile pour l'affichage du labyrinthe
+		bool m_treated = false; //flag utile pour le parcours du labyrinthe
+		bool m_saved = false; //flag utile pour l'écriture dans les fichiers
+		bool m_corrupted = false; //flag utile pour la lecture depuis les fichiers
 };
 
 std::ostream &operator<<(std::ostream &out, const Cell &c); //surcharge le flux d'écriture
 std::istream &operator>>(std::istream &in, Cell &c); //surcharge le flux de lecture
-bool operator==(const Cell &c1, const Cell &c2);
+bool operator==(const Cell &c1, const Cell &c2); //surcharge l'opération d'égalité entre deux cellules, non utilisée dans le programme
 
 #endif

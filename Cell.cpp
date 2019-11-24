@@ -1,4 +1,4 @@
-#include "Cell.h" 
+#include "Cell.h"
 
 Cell::Cell(int x, int y) : m_x(x), m_y(y)
 {
@@ -17,6 +17,7 @@ void Cell::add_neighb(Cell *c1, Cell *c2)
 	this->add_neighb(c2);
 }
 
+//Méthode qui permet de rajouter une cellule aux tableau des voisins (des pointeurs des voisins pour être plus précis)
 void Cell::set_neighb(Cell *c)
 {
 	delete[] m_backup;
@@ -64,12 +65,18 @@ std::istream &operator>>(std::istream &in, Cell &c)
 {
 	std::string chain;
 	in >> chain;
+
+	//Dans certains cas, la dernière ligne lue dans les fichiers est une ligne vide
+	//Pour éviter de faire planter le programme, on utilise un flag de la classe Cell pour notifier que cette cellule doit être ignorée dans le main
 	if (chain == "")
 	{
 		c.m_corrupted = true;
 		return in;
 	}
-	chain = chain.substr(1,chain.size()-2);
+
+	//chain est de la forme (int,int)
+	chain = chain.substr(1, chain.size()-2);
+	//chain est maintenant de la forme int,int
 	c.m_x = std::stoi(chain.substr(0, chain.find(',')));
 	c.m_y = std::stoi(chain.substr(chain.find(',')+1, chain.size()));
 	return in;
