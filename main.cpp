@@ -4,7 +4,7 @@
 #include "Path.h"
 #include <fstream>
 using namespace std;
-
+ 
 void draw_gate(const Cell *n1, const Cell *n2)
 {
 	vibes::drawBox(
