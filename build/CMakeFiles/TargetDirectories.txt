@@ -1,5 +1,0 @@
-/home/mourtaza/Documents/C++/TP5_a_finir/Unittests/build/CMakeFiles/rebuild_cache.dir
-/home/mourtaza/Documents/C++/TP5_a_finir/Unittests/build/CMakeFiles/edit_cache.dir
-/home/mourtaza/Documents/C++/TP5_a_finir/Unittests/build/CMakeFiles/test_main.dir
-/home/mourtaza/Documents/C++/TP5_a_finir/Unittests/build/CMakeFiles/test.dir
-/home/mourtaza/Documents/C++/TP5_a_finir/Unittests/build/CMakeFiles/unittest_exe.dir
